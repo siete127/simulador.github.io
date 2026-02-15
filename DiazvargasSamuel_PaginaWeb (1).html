@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto: Reducción de Contaminación por Basura | Samuel Díaz Vargas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2E7D32 0%, #388E3C 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .student-info {
+            margin-top: 1rem;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            background: #1B5E20;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav li {
+            margin: 0.5rem 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background: #66BB6A;
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #2E7D32;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #66BB6A;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #388E3C;
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        /* Cards */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #F1F8E9 0%, #DCEDC8 100%);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 2px solid #A5D6A7;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .card h4 {
+            color: #2E7D32;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #66BB6A 0%, #81C784 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            padding: 1.5rem;
+            margin-left: 30px;
+            border-left: 3px solid #66BB6A;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #2E7D32;
+            border: 3px solid white;
+        }
+
+        .timeline-item h4 {
+            color: #2E7D32;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+        }
+
+        th {
+            background: #2E7D32;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        tr:hover {
+            background: #F1F8E9;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #66BB6A 0%, #81C784 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        /* Video Section */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Images */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: #1B5E20;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav li {
+                margin: 0.3rem 0;
+            }
+        }
+
+        /* Special Effects */
+        .highlight {
+            background: linear-gradient(120deg, #FFF9C4 0%, #FFF59D 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .success {
+            color: #2E7D32;
+            font-weight: 600;
+        }
+
+        .alert {
+            background: #FFEBEE;
+            border-left: 4px solid #F44336;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin: 1rem 0;
+        }
+
+        .accordion-item {
+            background: #F1F8E9;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: #66BB6A;
+            color: white;
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: #81C784;
+        }
+
+        .accordion-content {
+            padding: 1rem;
+            display: none;
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <h1>♻️ Proyecto de Gestión Ambiental Comunitaria</h1>
+            <p class="subtitle">Reducción de Contaminación por Acumulación de Basura</p>
+            <p class="student-info">
+                <strong>Estudiante:</strong> Samuel Díaz Vargas | 
+                <strong>Institución:</strong> INEA | 
+                <strong>Fecha:</strong> Febrero 2026
+            </p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#objetivos">Objetivos</a></li>
+            <li><a href="#organizacion">Organización</a></li>
+            <li><a href="#direccion">Dirección</a></li>
+            <li><a href="#control">Control</a></li>
+            <li><a href="#gantt">Diagrama Gantt</a></li>
+            <li><a href="#tecnologias">Tecnologías</a></li>
+            <li><a href="#reflexion">Reflexión</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Sección Inicio -->
+        <section id="inicio">
+            <h2>🌍 Presentación del Proyecto</h2>
+            
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-number">35</div>
+                    <div class="stat-label">Familias Beneficiadas</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">40%</div>
+                    <div class="stat-label">Reducción de Basura</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Meses de Duración</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">$12,830</div>
+                    <div class="stat-label">Presupuesto Total</div>
+                </div>
+            </div>
+
+            <h3>Sobre el Proyecto</h3>
+            <p>
+                Este proyecto busca <span class="highlight">transformar la manera en que nuestra comunidad maneja sus residuos</span>, 
+                implementando un sistema organizado de gestión de basura donde cada familia aprenda a separar correctamente 
+                sus desechos, tengamos puntos de acopio accesibles y trabajemos en equipo para mantener limpia nuestra comunidad.
+            </p>
+
+            <h3>¿Por qué es importante?</h3>
+            <div class="cards-container">
+                <div class="card">
+                    <h4>🏥 Salud Pública</h4>
+                    <p>Reduce enfermedades respiratorias y gastrointestinales causadas por acumulación de basura.</p>
+                </div>
+                <div class="card">
+                    <h4>🌱 Medio Ambiente</h4>
+                    <p>Protege el suelo y agua de contaminación, conservando recursos naturales.</p>
+                </div>
+                <div class="card">
+                    <h4>👥 Calidad de Vida</h4>
+                    <p>Mejora los espacios comunes y crea una cultura de responsabilidad ambiental.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Objetivos -->
+        <section id="objetivos">
+            <h2>🎯 Objetivos y Metas</h2>
+            
+            <h3>Objetivo General</h3>
+            <p class="success" style="font-size: 1.1rem; padding: 1rem; background: #E8F5E9; border-radius: 8px;">
+                Reducir la contaminación ambiental causada por la acumulación de basura en la comunidad mediante 
+                la implementación de un programa integral de gestión de residuos sólidos que promueva la separación, 
+                el reciclaje y la disposición adecuada de desechos.
+            </p>
+
+            <h3>Objetivos Específicos</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>1. Educación Ambiental</h4>
+                    <p>Capacitar al 70% de los 50 hogares de la comunidad (35 familias) en técnicas de separación 
+                    de residuos orgánicos e inorgánicos mediante talleres prácticos.</p>
+                    <strong>Meta:</strong> 4 talleres mensuales durante 4 meses
+                </div>
+                <div class="timeline-item">
+                    <h4>2. Infraestructura de Reciclaje</h4>
+                    <p>Establecer 3 puntos de acopio con contenedores diferenciados para papel, plástico, vidrio 
+                    y residuos orgánicos en zonas comunes estratégicas.</p>
+                    <strong>Meta:</strong> Instalación completada en 6 semanas
+                </div>
+                <div class="timeline-item">
+                    <h4>3. Cultura de Responsabilidad</h4>
+                    <p>Desarrollar un programa de sensibilización que involucre a escuelas, comercios y organizaciones 
+                    locales para promover prácticas sostenibles.</p>
+                    <strong>Meta:</strong> 2 jornadas comunitarias + brigada ecológica de 10 voluntarios
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Organización -->
+        <section id="organizacion">
+            <h2>📋 Fase 3: Organización</h2>
+            
+            <h3>Actividades, Tareas y Recursos</h3>
+            <p>
+                En esta fase se definieron todas las actividades necesarias, distribuidas en tres subfases 
+                que abarcan desde la preparación inicial hasta la consolidación del proyecto.
+            </p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        📌 Fase 1: Actividades Previas (Mes 1-2) - $5,730
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><strong>Actividad 1:</strong> Conformar equipo de trabajo y planificación inicial</li>
+                            <li><strong>Actividad 2:</strong> Gestionar permisos y alianzas (Delegación, ONG, Centro Reciclaje)</li>
+                            <li><strong>Actividad 3:</strong> Adquirir materiales e infraestructura (9 contenedores, señalética)</li>
+                        </ul>
+                        <p><strong>Recursos humanos clave:</strong> Comité vecinal (3 personas), Coordinador general</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        📌 Fase 2: Actividades de Desarrollo (Mes 3-4) - $3,900
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><strong>Actividad 4:</strong> Instalar puntos de acopio (3 ubicaciones estratégicas)</li>
+                            <li><strong>Actividad 5:</strong> Impartir talleres de capacitación (4 talleres diferentes)</li>
+                            <li><strong>Actividad 6:</strong> Establecer sistema de recolección diferenciada</li>
+                        </ul>
+                        <p><strong>Recursos humanos clave:</strong> 2 Educadores ambientales, 4 Equipo operativo</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        📌 Fase 3: Actividades de Concreción (Mes 5-6) - $3,200
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><strong>Actividad 7:</strong> Integrar programa educativo en escuela local</li>
+                            <li><strong>Actividad 8:</strong> Organizar jornadas de limpieza comunitaria (2 jornadas)</li>
+                            <li><strong>Actividad 9:</strong> Monitorear y evaluar resultados</li>
+                            <li><strong>Actividad 10:</strong> Establecer sostenibilidad a largo plazo</li>
+                        </ul>
+                        <p><strong>Recursos humanos clave:</strong> 10 Voluntarios brigada ecológica, 35 Familias participantes</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Dirección -->
+        <section id="direccion">
+            <h2>👥 Fase 4: Dirección - División del Trabajo</h2>
+            
+            <h3>¿Por qué es importante la división del trabajo?</h3>
+            <div class="cards-container">
+                <div class="card">
+                    <h4>⚡ Especialización</h4>
+                    <p>Cada persona se enfoca en lo que hace mejor, aumentando la calidad. Los educadores enseñan, 
+                    el equipo operativo instala.</p>
+                </div>
+                <div class="card">
+                    <h4>📈 Eficiencia</h4>
+                    <p>Se evita duplicar esfuerzos. Mientras unos instalan contenedores, otros preparan talleres 
+                    simultáneamente.</p>
+                </div>
+                <div class="card">
+                    <h4>✅ Claridad de Roles</h4>
+                    <p>Todos saben qué deben hacer y de qué son responsables, evitando confusión en el equipo.</p>
+                </div>
+            </div>
+
+            <h3>Perfiles de Colaboradores Clave</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Perfil</th>
+                        <th>Características</th>
+                        <th>Acciones Principales</th>
+                        <th>Etapa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Coordinador General</strong></td>
+                        <td>Liderazgo, experiencia comunitaria, comunicación</td>
+                        <td>Supervisar actividades, coordinar reuniones, gestionar permisos</td>
+                        <td>Todas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Educador Ambiental</strong></td>
+                        <td>Conocimientos ecología, experiencia docente, empatía</td>
+                        <td>Impartir talleres, crear material educativo, capacitar familias</td>
+                        <td>Fase 2 y 3</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Equipo Operativo</strong></td>
+                        <td>Habilidades técnicas, trabajo en equipo, compromiso</td>
+                        <td>Instalar contenedores, mantenimiento, logística</td>
+                        <td>Fase 1 y 2</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Brigada Ecológica</strong></td>
+                        <td>Voluntariado, disponibilidad, entusiasmo</td>
+                        <td>Jornadas de limpieza, promoción, seguimiento</td>
+                        <td>Fase 3</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>¿Es necesario integrar colaboradores?</h3>
+            <div class="alert">
+                <h4 style="margin-bottom: 0.5rem;">⚠️ SÍ, es absolutamente necesario</h4>
+                <p>Sin colaboradores, el proyecto fracasaría por:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Sobrecarga de trabajo en una sola persona</li>
+                    <li>Falta de conocimientos especializados</li>
+                    <li>Bajo compromiso comunitario a largo plazo</li>
+                    <li>Imposibilidad de escalar el proyecto</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Sección Control -->
+        <section id="control">
+            <h2>📊 Fase 6: Control - Medir y Corregir</h2>
+            
+            <h3>Análisis de Escenarios</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Escenario</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: #C8E6C9;">
+                        <td><strong>🟢 EL MEJOR</strong></td>
+                        <td>Participación 80-90%, reducción 50%, adelanto en cronograma</td>
+                        <td>Expandir a 50 familias, talleres adicionales, contactar medios</td>
+                    </tr>
+                    <tr style="background: #FFF9C4;">
+                        <td><strong>🟡 EL REAL</strong></td>
+                        <td>Participación 70%, reducción 40%, según lo planeado</td>
+                        <td>Mantener plan, recordatorios semanales, celebrar logros</td>
+                    </tr>
+                    <tr style="background: #FFCDD2;">
+                        <td><strong>🔴 EL PEOR</strong></td>
+                        <td>Participación 57%, reducción 25%, retrasos significativos</td>
+                        <td>Reunión emergencia, campaña intensiva, simplificar sistema</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Estándares de Medición</h3>
+            <div class="cards-container">
+                <div class="card">
+                    <h4>✅ Calidad</h4>
+                    <ul>
+                        <li>70%+ familias separan correctamente</li>
+                        <li>85% residuos bien separados</li>
+                        <li>Satisfacción ≥80%</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>📏 Cantidad</h4>
+                    <ul>
+                        <li>80 kg menos basura semanal</li>
+                        <li>35 familias capacitadas</li>
+                        <li>10 voluntarios activos</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>⏱️ Tiempo</h4>
+                    <ul>
+                        <li>6 meses ±2 semanas</li>
+                        <li>Talleres en fecha ±7 días</li>
+                        <li>Fases según cronograma</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>💰 Finanzas</h4>
+                    <ul>
+                        <li>≤$14,196 MXN total</li>
+                        <li>$600 ahorro mensual</li>
+                        <li>$200+ ingreso reciclaje</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Gantt -->
+        <section id="gantt">
+            <h2>📅 Fase 5: Diagrama de Gantt</h2>
+            <p>
+                El diagrama de Gantt muestra la planificación temporal de todas las actividades del proyecto, 
+                permitiendo visualizar el progreso, identificar el camino crítico y gestionar recursos eficientemente.
+            </p>
+            
+            <div style="background: #E8F5E9; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+                <h4 style="color: #2E7D32; margin-bottom: 1rem;">Información del Cronograma:</h4>
+                <ul style="margin-left: 1.5rem;">
+                    <li><strong>Duración total:</strong> 187 días (~6 meses)</li>
+                    <li><strong>Fecha inicio:</strong> 10 de febrero de 2026</li>
+                    <li><strong>Fecha fin estimada:</strong> 15 de agosto de 2026</li>
+                    <li><strong>Total de actividades:</strong> 31 actividades principales</li>
+                    <li><strong>Hitos importantes:</strong> Fin Fase 1 (día 47), Fin Fase 2 (día 97), Fin Proyecto (día 187)</li>
+                </ul>
+            </div>
+
+            <p style="text-align: center; margin: 2rem 0;">
+                <em>El diagrama completo está disponible en el archivo descargable</em>
+            </p>
+        </section>
+
+        <!-- Sección Tecnologías -->
+        <section id="tecnologias">
+            <h2>💻 Tecnologías Emergentes Implementadas</h2>
+            
+            <h3>Herramientas para Convocar Participantes</h3>
+            <div class="cards-container">
+                <div class="card">
+                    <h4>📱 WhatsApp</h4>
+                    <p><strong>Uso:</strong> Grupos comunitarios</p>
+                    <p>Comunicación instantánea, compartir fotos del progreso, crear encuestas rápidas</p>
+                    <p><em>Ejemplo: Grupo "Barrio Limpio" con 50 vecinos</em></p>
+                </div>
+                <div class="card">
+                    <h4>👥 Facebook</h4>
+                    <p><strong>Uso:</strong> Página del proyecto</p>
+                    <p>Alcance amplio, publicar eventos, testimonios y fotos de avances</p>
+                    <p><em>Ejemplo: Evento "Taller de Reciclaje - Sábado 10am"</em></p>
+                </div>
+                <div class="card">
+                    <h4>📝 Google Forms</h4>
+                    <p><strong>Uso:</strong> Registro de voluntarios</p>
+                    <p>Recopilar datos organizados, conocer disponibilidad e identificar habilidades</p>
+                    <p><em>Ejemplo: Formulario "¿Quieres ser voluntario?"</em></p>
+                </div>
+            </div>
+
+            <h3>Ventajas y Desventajas</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tecnología</th>
+                        <th>✅ Ventajas</th>
+                        <th>❌ Desventajas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>WhatsApp</strong></td>
+                        <td>Masivo, instantáneo, fácil de usar, sin costo</td>
+                        <td>Ruido informativo, no todos tienen smartphone, difícil organizar info</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Redes Sociales</strong></td>
+                        <td>Gran alcance, contenido visual, gratuito</td>
+                        <td>Requiere gestión constante, adultos mayores con poca adopción</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Google Forms</strong></td>
+                        <td>Datos organizados, análisis automático, accesible</td>
+                        <td>Requiere conexión a internet, curva de aprendizaje para algunos</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Sección Reflexión -->
+        <section id="reflexion">
+            <h2>💭 Reflexión Final</h2>
+            
+            <h3>Lo que más se dificultó</h3>
+            <div class="cards-container">
+                <div class="card">
+                    <h4>🔄 Coordinación de Actores</h4>
+                    <p>Sincronizar tiempos entre delegación, centro de reciclaje, ONG y 35 familias fue complejo. 
+                    Cada uno con sus prioridades y tiempos.</p>
+                </div>
+                <div class="card">
+                    <h4>💪 Mantener Compromiso</h4>
+                    <p>El entusiasmo inicial disminuye. Fue necesario implementar recordatorios constantes y 
+                    visitas de seguimiento personalizadas.</p>
+                </div>
+                <div class="card">
+                    <h4>💵 Gestión Presupuestal</h4>
+                    <p>Con $12,830 cada peso contó. Decidir entre calidad vs cantidad de contenedores fue difícil. 
+                    Priorizamos durabilidad.</p>
+                </div>
+            </div>
+
+            <h3>Logros Alcanzados</h3>
+            <div style="background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); padding: 2rem; border-radius: 10px; margin-top: 2rem;">
+                <h4 style="color: #2E7D32; margin-bottom: 1rem;">🎉 Éxitos del Proyecto:</h4>
+                <ol style="margin-left: 1.5rem; line-height: 2;">
+                    <li><strong>Transformación Visible:</strong> Tres puntos críticos de basura eliminados completamente. 
+                    El barrio genera orgullo en los vecinos.</li>
+                    <li><strong>Cultura Ambiental:</strong> 35 familias cambiaron sus hábitos diarios. La brigada ecológica 
+                    estudiantil es inspiradora.</li>
+                    <li><strong>Modelo Replicable:</strong> Documentación completa permite que otras comunidades lo implementen. 
+                    Ya hay dos colonias interesadas.</li>
+                    <li><strong>Sostenibilidad:</strong> Ahorro de $600 mensuales + $200 de reciclables garantizan continuidad 
+                    sin financiamiento externo.</li>
+                </ol>
+            </div>
+
+            <h3>Aprendizajes Clave</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1.5rem;">
+                Este proyecto demostró que <span class="highlight">el cambio comunitario es posible cuando existe organización, 
+                educación y compromiso compartido</span>. Las tecnologías emergentes fueron aliadas fundamentales para mantener 
+                comunicación efectiva y lograr coordinación entre todos los actores. La clave del éxito fue adaptar el plan a 
+                la realidad sin perder de vista los objetivos principales.
+            </p>
+        </section>
+
+        <!-- Sección Descarga -->
+        <section id="descarga" style="text-align: center; background: linear-gradient(135deg, #66BB6A 0%, #81C784 100%); color: white;">
+            <h2 style="color: white; border-bottom: 3px solid white;">📥 Documentos del Proyecto</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Todos los documentos, diagramas y presentaciones están disponibles para su descarga y revisión.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button class="btn" style="background: white; color: #2E7D32;">📄 Fase 3: Organización</button>
+                <button class="btn" style="background: white; color: #2E7D32;">📊 Fase 4: Presentación</button>
+                <button class="btn" style="background: white; color: #2E7D32;">📅 Fase 5: Gantt</button>
+                <button class="btn" style="background: white; color: #2E7D32;">📈 Fase 6: Control</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">
+            <strong>♻️ Proyecto de Gestión Ambiental Comunitaria</strong>
+        </p>
+        <p>
+            Samuel Díaz Vargas | INEA 2026<br>
+            "Juntos por un ambiente más limpio - Un pequeño cambio hoy, un gran impacto mañana"
+        </p>
+        <p style="margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">
+            Este proyecto fue desarrollado como parte del programa de bachillerato del INEA,<br>
+            aplicando conocimientos de administración de proyectos y tecnologías emergentes.
+        </p>
+    </footer>
+
+    <script>
+        // Accordion functionality
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const allContents = document.querySelectorAll('.accordion-content');
+            
+            allContents.forEach(item => {
+                if (item !== content) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            content.classList.toggle('active');
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-in';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
